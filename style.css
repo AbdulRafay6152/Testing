@@ -1,0 +1,1037 @@
+/* =========================================================
+   RESET & BASE STYLES
+========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    overflow: hidden;
+    background: #080808;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   SVG FILTER
+========================================================= */
+.svg-filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    background: #080808;
+}
+
+.background-image {
+    position: absolute;
+    inset: -7%;
+    background-image: url("https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&w=2400&q=90");
+    background-position: center;
+    background-size: cover;
+    filter: saturate(0.6) brightness(0.28) blur(1px);
+    transform: scale(1.08);
+    transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.background-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.82));
+    backdrop-filter: blur(3px);
+    transition: background 800ms ease;
+}
+
+/* =========================================================
+   GALLERY CONTAINER
+========================================================= */
+.gallery {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+    transition: filter 700ms ease;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.gallery-header {
+    width: 100%;
+    padding: 32px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.brand-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.9);
+}
+
+.main-navigation {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 300ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: white;
+}
+
+.gallery-counter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.gallery-counter span:first-child {
+    color: white;
+}
+
+.counter-line {
+    width: 30px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================================
+   3D CAROUSEL SECTION
+========================================================= */
+.carousel-section {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1600px;
+    perspective-origin: center;
+    transform-style: preserve-3d;
+}
+
+/* =========================================================
+   ART CARD (PHYSICAL 3D OBJECT)
+========================================================= */
+.art-card {
+    width: min(380px, 30vw);
+    height: min(540px, 67vh);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #111111;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    will-change: transform, opacity;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+    transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 650ms ease,
+        box-shadow 500ms ease,
+        filter 500ms ease;
+    user-select: none;
+    contain: layout paint;
+}
+
+.card-image {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    transform: scale(1.01);
+    will-change: transform, filter;
+    transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+        filter 800ms ease;
+}
+
+.art-card:hover .card-image img {
+    transform: scale(1.06);
+}
+
+.card-gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.02) 15%,
+            rgba(0, 0, 0, 0.08) 40%,
+            rgba(0, 0, 0, 0.92) 100%);
+}
+
+.card-content {
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    bottom: 30px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.card-category {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.card-content h2 {
+    margin-bottom: 7px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(24px, 2.3vw, 34px);
+    font-weight: 400;
+    line-height: 1.05;
+}
+
+.card-content p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.card-number {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 5;
+    font-family: Georgia, serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* =========================================================
+   HOVER ISOLATION (CARD SHARP, BACKGROUND SOFT)
+========================================================= */
+.gallery.has-hover .background-image {
+    filter: saturate(0.35) brightness(0.2) blur(10px);
+    transform: scale(1.13);
+}
+
+.gallery.has-hover .background-overlay {
+    backdrop-filter: blur(10px);
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.88));
+}
+
+.gallery.has-hover .art-card:not(.hovered) {
+    filter: blur(6px);
+    opacity: 0.35;
+}
+
+.art-card.hovered {
+    opacity: 1 !important;
+    filter: none !important;
+    z-index: 90 !important;
+    box-shadow: 0 45px 120px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+/* =========================================================
+   NAVIGATION BUTTONS
+========================================================= */
+.navigation-button {
+    width: 58px;
+    height: 58px;
+    position: absolute;
+    top: 50%;
+    z-index: 200;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.25);
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    backdrop-filter: blur(12px);
+    transform: translateY(-50%);
+    transition: transform 300ms ease, background 300ms ease, border-color 300ms ease;
+}
+
+.navigation-left {
+    left: 35px;
+}
+
+.navigation-right {
+    right: 35px;
+}
+
+.navigation-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-50%) scale(1.08);
+}
+
+/* =========================================================
+   SIDE-CARD MINI RIPPLE
+========================================================= */
+.ripple-container {
+    position: absolute;
+    inset: 0;
+    z-index: -30;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ripple {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) scale(0);
+    animation: cardRipple 850ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardRipple {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.85;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(45);
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   SINGLE LIQUID/LIGHT WAVE (BEHIND CARD)
+========================================================= */
+.global-ripple {
+    position: fixed;
+    inset: 0;
+    z-index: 25;
+    /* Sits behind center artwork (zIndex 30/450) */
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.global-ripple.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.liquid-wave {
+    position: absolute;
+    left: var(--ripple-x);
+    top: var(--ripple-y);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0.02) 40%,
+            transparent 70%);
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2), inset 0 0 25px rgba(255, 255, 255, 0.1);
+    will-change: transform, opacity, border-width, filter;
+}
+
+.global-ripple.active .liquid-wave {
+    animation: liquidGlassWave 1350ms cubic-bezier(0.12, 0.75, 0.2, 1) forwards;
+}
+
+@keyframes liquidGlassWave {
+    0% {
+        width: 20px;
+        height: 20px;
+        opacity: 0;
+        border-width: 1px;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    12% {
+        opacity: 1;
+        width: 50px;
+        height: 50px;
+        border-width: 4px;
+    }
+
+    40% {
+        opacity: 0.85;
+        border-width: 10px;
+        box-shadow: 0 0 45px rgba(255, 255, 255, 0.25), inset 0 0 35px rgba(255, 255, 255, 0.15);
+    }
+
+    75% {
+        opacity: 0.4;
+        border-width: 4px;
+    }
+
+    100% {
+        width: 130vmax;
+        height: 130vmax;
+        opacity: 0;
+        border-width: 1px;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.liquid-distortion {
+    position: fixed;
+    inset: 0;
+    z-index: 24;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    backdrop-filter: blur(0px) saturate(100%);
+    -webkit-backdrop-filter: blur(0px) saturate(100%);
+    transition: opacity 400ms ease, backdrop-filter 600ms ease;
+}
+
+.liquid-distortion.active {
+    visibility: visible;
+    opacity: 1;
+    backdrop-filter: blur(2px) saturate(120%);
+    -webkit-backdrop-filter: blur(2px) saturate(120%);
+}
+
+/* =========================================================
+   3D ARTWORK EXPANSION STATE
+========================================================= */
+.art-card.opening {
+    z-index: 450 !important;
+    box-shadow: 0 70px 180px rgba(0, 0, 0, 0.95);
+}
+
+.art-card.opening .card-image img {
+    transform: scale(0.01);
+    transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================================
+   FULLSCREEN ARTWORK VIEWER
+========================================================= */
+.art-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(15px);
+    transform: scale(1.03);
+    transition: opacity 800ms ease, visibility 800ms ease, transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.art-viewer.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.viewer-background {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 60%);
+}
+
+.viewer-content {
+    width: min(1180px, 90vw);
+    display: grid;
+    grid-template-columns: minmax(300px, 1.25fr) minmax(280px, 0.75fr);
+    gap: 70px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.viewer-image-wrapper {
+    height: min(720px, 80vh);
+    overflow: hidden;
+    background: #111111;
+    border-radius: 4px;
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
+    transform: scale(0.96);
+    opacity: 0;
+    transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms ease;
+}
+
+.art-viewer.open .viewer-image-wrapper {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.viewer-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.viewer-details {
+    max-width: 440px;
+}
+
+.viewer-category {
+    display: block;
+    margin-bottom: 16px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+}
+
+.viewer-details h1 {
+    margin-bottom: 8px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 4.5vw, 64px);
+    line-height: 0.98;
+    font-weight: 400;
+}
+
+.viewer-artist-name {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 15px;
+    margin-bottom: 24px;
+}
+
+.viewer-price-tag {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+    margin-bottom: 24px;
+}
+
+.price-label {
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 4px;
+}
+
+.price-amount {
+    font-size: 18px;
+    font-family: Georgia, serif;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.viewer-divider {
+    width: 60px;
+    height: 1px;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.viewer-description {
+    line-height: 1.8;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.viewer-close {
+    position: absolute;
+    top: 35px;
+    right: 45px;
+    z-index: 10;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 28px;
+    font-weight: 200;
+    cursor: pointer;
+    transition: transform 300ms ease, background 300ms ease;
+}
+
+.viewer-close:hover {
+    transform: rotate(90deg);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+.about-section {
+    position: absolute;
+    inset: 0;
+    z-index: 300;
+    padding: 120px 8vw 70px;
+    overflow-y: auto;
+    background: rgba(7, 7, 7, 0.85);
+    backdrop-filter: blur(25px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(30px);
+    transition: opacity 650ms ease, transform 650ms ease, visibility 650ms ease;
+}
+
+.gallery.about-open .about-section {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.gallery.about-open .carousel-section,
+.gallery.about-open .gallery-footer {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.97);
+}
+
+.carousel-section,
+.gallery-footer {
+    transition: opacity 500ms ease, transform 650ms ease;
+}
+
+.about-inner {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.about-heading h1 {
+    margin-top: 20px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 6vw, 85px);
+    font-weight: 400;
+    line-height: 0.95;
+}
+
+.about-content {
+    max-width: 500px;
+}
+
+.about-large-text {
+    margin-bottom: 25px;
+    font-size: 22px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.about-content>p:not(.about-large-text) {
+    line-height: 1.8;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-block {
+    margin-top: 45px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.contact-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.contact-email {
+    color: white;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    transition: opacity 250ms ease;
+}
+
+.contact-email:hover {
+    opacity: 0.6;
+}
+
+.contact-form {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    outline: none;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 13px;
+    resize: vertical;
+    transition: border-color 250ms ease, background 250ms ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.contact-form button {
+    align-self: flex-start;
+    margin-top: 5px;
+    padding: 14px 25px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: white;
+    color: black;
+    cursor: pointer;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: transform 250ms ease, background 250ms ease;
+}
+
+.contact-form button:hover {
+    transform: translateY(-2px);
+    background: #dddddd;
+}
+
+.form-status {
+    margin-top: 12px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.gallery-footer {
+    width: 100%;
+    padding: 20px 50px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-separator {
+    width: 25px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE COMPOSITION
+========================================================= */
+@media (max-width: 800px) {
+    .gallery-header {
+        padding: 20px;
+    }
+
+    .main-navigation {
+        gap: 16px;
+    }
+
+    .gallery-counter {
+        display: none;
+    }
+
+    .carousel {
+        perspective: 1000px;
+    }
+
+    .art-card {
+        width: min(280px, 72vw);
+        height: min(420px, 58vh);
+    }
+
+    .navigation-button {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .navigation-left {
+        left: 10px;
+    }
+
+    .navigation-right {
+        right: 10px;
+    }
+
+    .gallery-footer {
+        padding: 15px 20px 22px;
+    }
+
+    .footer-instruction {
+        display: none;
+    }
+
+    .viewer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 88vw;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .viewer-image-wrapper {
+        width: 100%;
+        height: 45vh;
+        flex-shrink: 0;
+    }
+
+    .viewer-details h1 {
+        font-size: 36px;
+    }
+
+    .viewer-description {
+        font-size: 12px;
+    }
+
+    .viewer-close {
+        top: 20px;
+        right: 20px;
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+    }
+
+    .about-section {
+        padding: 90px 20px 40px;
+    }
+
+    .about-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-heading h1 {
+        font-size: 42px;
+    }
+
+    .about-large-text {
+        font-size: 18px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================================
+   INTRO SCATTER & RELOAD ANIMATION
+========================================================= */
+
+/* Header, Footer & Nav buttons initial scatter */
+body:not(.loaded) .gallery-header {
+    transform: translateY(-80px) rotate(-3deg);
+    opacity: 0;
+}
+
+body:not(.loaded) .gallery-footer {
+    transform: translateY(80px) rotate(3deg);
+    opacity: 0;
+}
+
+body:not(.loaded) .navigation-left {
+    transform: translate(-120px, -50%) scale(0.3);
+    opacity: 0;
+}
+
+body:not(.loaded) .navigation-right {
+    transform: translate(120px, -50%) scale(0.3);
+    opacity: 0;
+}
+
+/* Transitions for smooth assembly */
+.gallery-header,
+.gallery-footer,
+.navigation-button {
+    transition: transform 2500ms cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 1500ms ease;
+}
+
+/* Card scatter transition property */
+.art-card.is-scattered {
+    transition: transform 2500ms cubic-bezier(0.16, 1, 0.3, 1) !important,
+        opacity 1500ms ease !important,
+        filter 800ms ease !important;
+}
+
+/* Page unload / Reload scatter states */
+body.unloading .gallery-header {
+    transform: translateY(-100px);
+    opacity: 0;
+}
+
+body.unloading .gallery-footer {
+    transform: translateY(100px);
+    opacity: 0;
+}
+
+body.unloading .navigation-left {
+    transform: translate(-150px, -50%) scale(0.1);
+    opacity: 0;
+}
+
+body.unloading .navigation-right {
+    transform: translate(150px, -50%) scale(0.1);
+    opacity: 0;
+}
+
+/* =========================================================
+   ABOUT PAGE CLEAN DOWNWARD ARROW BUTTON
+========================================================= */
+
+/* By default hidden on main gallery page */
+.about-back-btn {
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    z-index: 350;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 400ms ease, 
+                background 300ms ease, 
+                border-color 300ms ease;
+}
+
+/* Hover Effect: Down arrow slightly dips & background glows */
+.about-back-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(0) scale(1.05);
+}
+
+.about-back-btn:hover svg {
+    transform: translateY(2px);
+    transition: transform 300ms ease;
+}
+
+/* Strictly ONLY show when About Page is Active */
+.gallery.about-open .about-back-btn {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* About Section Slide-Down Animation on Exit */
+.about-section {
+    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 700ms cubic-bezier(0.16, 1, 0.3, 1), 
+                visibility 600ms ease !important;
+}
+
+/* Slide down out of view when returning to gallery */
+.gallery:not(.about-open) .about-section {
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+}

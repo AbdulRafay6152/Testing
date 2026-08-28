@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTÉ — Digital Art Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SVG WATER REFRACTION FILTER
+    ====================================================== -->
+    <svg class="svg-filters" aria-hidden="true">
+        <filter id="waterDistortion" x="-30%" y="-30%" width="160%" height="160%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="8" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
+
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
+    <div class="background">
+        <div class="background-image"></div>
+        <div class="background-overlay"></div>
+    </div>
+
+    <!-- =====================================================
+         MAIN GALLERY
+    ====================================================== -->
+    <main class="gallery">
+
+        <!-- HEADER -->
+        <header class="gallery-header">
+            <div class="brand">
+                <span class="brand-dot"></span>
+                <span>ARTÉ</span>
+            </div>
+
+            <nav class="main-navigation">
+                <button class="nav-link active" data-section="gallery">Gallery</button>
+                <button class="nav-link" data-section="about">About</button>
+            </nav>
+
+            <div class="gallery-counter">
+                <span id="currentNumber">01</span>
+                <span class="counter-line"></span>
+                <span id="totalNumber">06</span>
+            </div>
+        </header>
+
+        <section class="carousel-section" id="gallerySection">
+            <button class="navigation-button navigation-left" id="previousButton"
+                aria-label="Previous artwork">←</button>
+
+            <div class="carousel" id="carousel">
+
+                <!-- ARTWORK 01 -->
+                <article class="art-card" data-index="0" data-title="Aesthetic" data-artist="Rafay Malik"
+                    data-category="Portrait" data-price="P.O.A."
+                    data-description="Ye Bacha hamara hai and ye bohot ass thetic banner ki koshish Kar Raha hai and aesthetic photo to aai hai atleast">
+
+                    <div class="card-image">
+                        <img src="https://i.postimg.cc/LXk3TYZs/IMG-20260816-203638.jpg" alt="Aesthetic artwork"
+                            fetchpriority="high" decoding="async">
+                    </div>
+                    <div class="card-gradient"></div>
+                    <div class="card-content">
+                        <span class="card-category">01 / PORTRAIT</span>
+                        <h2>Aesthetic</h2>
+                        <p>Rafay Malik</p>
+                    </div>
+                    <div class="card-number">01</div>
+                    <div class="ripple-container"></div>
+                </article>
+
+                <!-- ARTWORK 02 -->
+                <article class="art-card" data-index="1" data-title="Suck my Dih" data-artist="Rafay Malik"
+                    data-category="Street" data-price="P.O.A."
+                    data-description="I Bought Stranger on street who wants to suck my Dih, and want all in. So I fullfilled his desire">
+
+                    <div class="card-image">
+                        <img src="https://i.postimg.cc/cHT8CQnh/RIYAN-20260816-202726-Hot-Prime-Color-(LMC17)-by-Riyan-PORTRAIT.jpg"
+                            alt="Suck my Dih artwork" decoding="async">
+                    </div>
+                    <div class="card-gradient"></div>
+                    <div class="card-content">
+                        <span class="card-category">02 / STREET</span>
+                        <h2>Suck my Dih</h2>
+                        <p>Rafay Malik</p>
+                    </div>
+                    <div class="card-number">02</div>
+                    <div class="ripple-container"></div>
+                </article>
+
+                <!-- ARTWORK 03 -->
+                <article class="art-card" data-index="2" data-title="Couple's Moment" data-artist="Abrar And Ukasha"
+                    data-category="Exhibition" data-price="P.O.A."
+                    data-description="Mai Agar Kahun... Tum SA Haseen Kaainaat Mai Hoga Nahi...">
+
+                    <div class="card-image">
+                        <img src="https://i.postimg.cc/bwHYqqb0/RIYAN-20260811-171234-Hot-Prime-Color-(LMC17)-by-Riyan.jpg"
+                            alt="Couple's Moment artwork" decoding="async">
+                    </div>
+                    <div class="card-gradient"></div>
+                    <div class="card-content">
+                        <span class="card-category">03 / EXHIBITION</span>
+                        <h2>Couple's Moment</h2>
+                        <p>Abrar And Ukasha</p>
+                    </div>
+                    <div class="card-number">03</div>
+                    <div class="ripple-container"></div>
+                </article>
+
+                <!-- ARTWORK 04 -->
+                <article class="art-card" data-index="3" data-title="Cute Poem" data-artist="Umar"
+                    data-category="Fine Art" data-price="P.O.A."
+                    data-description="Aik Mota Haathi Jhoom ke Chala, Makri ke jaal me jaake WO phasa...">
+
+                    <div class="card-image">
+                        <img src="https://i.postimg.cc/90dXz2Sg/RIYAN-20260810-191414-fi-AEHot-Prime-Color-(LMC17)-by-Riyan-PORTRAIT.jpg"
+                            alt="Cute Poem artwork" decoding="async">
+                    </div>
+                    <div class="card-gradient"></div>
+                    <div class="card-content">
+                        <span class="card-category">04 / FINE ART</span>
+                        <h2>Cute Poem</h2>
+                        <p>Umar</p>
+                    </div>
+                    <div class="card-number">04</div>
+                    <div class="ripple-container"></div>
+                </article>
+
+                <!-- ARTWORK 05 -->
+                <article class="art-card" data-index="4" data-title="Smile" data-artist="RafayMalik"
+                    data-category="Portrait" data-price="P.O.A."
+                    data-description="Kia Muskurahat hai, Ispe To Hum Fida hain">
+
+                    <div class="card-image">
+                        <img src="https://i.postimg.cc/zX26W6rd/RIYAN-20260430-142704-fi-AEHot-Prime-Color-(LMC17)-by-Riyan-PORTRAIT.jpg"
+                            alt="Smile artwork" decoding="async">
+                    </div>
+                    <div class="card-gradient"></div>
+                    <div class="card-content">
+                        <span class="card-category">05 / PORTRAIT</span>
+                        <h2>Smile</h2>
+                        <p>RafayMalik</p>
+                    </div>
+                    <div class="card-number">05</div>
+                    <div class="ripple-container"></div>
+                </article>
+
+            </div>
+            <button class="navigation-button navigation-right" id="nextButton" aria-label="Next artwork">→</button>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="gallery-footer">
+            <div class="footer-info">
+                <span id="activeCategory">ABSTRACT</span>
+                <span class="footer-separator"></span>
+                <span>CURATED COLLECTION 2026</span>
+            </div>
+            <div class="footer-instruction">CLICK ARTWORK TO EXPLORE</div>
+        </footer>
+
+        <!-- ABOUT / CONTACT SECTION -->
+        <!-- ABOUT SECTION BACK BUTTON -->
+        <!-- ABOUT SECTION BACK BUTTON (Simple Down Arrow) -->
+        <button class="about-back-btn" id="aboutBackBtn" aria-label="Close About Section">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+        </button>
+        <section class="about-section" id="aboutSection">
+            <div class="about-inner">
+                <div class="about-heading">
+                    <span class="eyebrow">ABOUT ARTÉ</span>
+                    <h1>Art deserves<br>to be experienced.</h1>
+                </div>
+
+                <div class="about-content">
+                    <p class="about-large-text">
+                        ARTÉ is a digital gallery created for people who see art as more than something hanging on a
+                        wall.
+                    </p>
+                    <p>
+                        We curate visual experiences, contemporary artwork and digital collections in an immersive space
+                        designed around the artwork itself.
+                    </p>
+
+                    <div class="contact-block">
+                        <span class="contact-label">HAVE A QUESTION?</span>
+                        <a href="mailto:hello@arte-gallery.com" class="contact-email">hello@arte-gallery.com</a>
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" id="contactName" placeholder="Your name" required>
+                        <input type="email" id="contactEmail" placeholder="Your email" required>
+                        <textarea id="contactMessage" placeholder="Your message" rows="4" required></textarea>
+                        <button type="submit">SEND MESSAGE</button>
+                    </form>
+
+                    <p class="form-status" id="formStatus"></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+         FULLSCREEN ARTWORK VIEW
+    ====================================================== -->
+    <div class="art-viewer" id="artViewer">
+        <button class="viewer-close" id="viewerClose" aria-label="Close artwork">×</button>
+        <div class="viewer-background"></div>
+
+        <div class="viewer-content">
+            <div class="viewer-image-wrapper">
+                <img id="viewerImage" src="" alt="">
+            </div>
+
+            <div class="viewer-details">
+                <span id="viewerCategory" class="viewer-category"></span>
+                <h1 id="viewerTitle"></h1>
+                <p id="viewerArtist" class="viewer-artist-name"></p>
+
+                <div class="viewer-price-tag">
+                    <span class="price-label">ESTIMATED VALUE</span>
+                    <span id="viewerPrice" class="price-amount"></span>
+                </div>
+
+                <div class="viewer-divider"></div>
+
+                <p id="viewerDescription" class="viewer-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         SINGLE LIQUID GLASS RIPPLE
+    ====================================================== -->
+    <div class="global-ripple" id="globalRipple">
+        <div class="liquid-wave"></div>
+    </div>
+
+    <div class="liquid-distortion" id="liquidDistortion"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
